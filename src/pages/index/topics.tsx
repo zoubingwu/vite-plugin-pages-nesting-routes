@@ -1,13 +1,14 @@
 import React from 'react'
+import { renderRoutes } from 'react-router-config';
 import { Switch, Route, Link, useParams, useRouteMatch } from 'react-router-dom'
 
-
-export default function Topics() {
-  // The `path` lets us build <Route> paths that are
-  // relative to the parent route, while the `url` lets
-  // us build relative links.
+// @ts-ignore
+export default function Topics({ route }) {
+  console.log('route: ', route);
   let { path, url } = useRouteMatch();
   console.log('path: ', path);
+
+  const Topic = route.children[0].component
 
   return (
     <div>
@@ -28,21 +29,10 @@ export default function Topics() {
         <Route exact path={path}>
           <h3>Please select a topic.</h3>
         </Route>
-        <Route path={`${path}/:topicId`}>
+        <Route path={`${path}/:id`}>
           <Topic />
         </Route>
       </Switch>
-    </div>
-  );
-}
-
-function Topic() {
-  //@ts-ignore
-  let { topicId } = useParams();
-
-  return (
-    <div>
-      <h3>{topicId}</h3>
     </div>
   );
 }
