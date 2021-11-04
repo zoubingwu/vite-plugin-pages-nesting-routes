@@ -15,9 +15,9 @@ export default defineConfig({
       react: true,
       extendRoute(route, parent) {
         // Remove this it'll all goes to catch all page
-        // if (route.routes && route.routes.length > 0) {
-        //   delete route.exact
-        // }
+        if (route.routes && route.routes.length > 0) {
+          delete route.exact
+        }
 
         if (route.path === "/") {
           // Index is unauthenticated.
