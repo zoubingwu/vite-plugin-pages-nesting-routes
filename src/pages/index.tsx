@@ -3,8 +3,12 @@ import React from 'react'
 import { renderRoutes, RouteConfigComponentProps } from 'react-router-config'
 
 const component: React.FC<RouteConfigComponentProps> = ({ route }) => {
+
+
   const child = route?.routes?.map(r => ({
     ...r,
+
+    // Commment out following two lines it'll fail to render child routes
     path: `${route.path === '/' ? '' : route.path}${r.path}`,
     exact: r.path === '/'
   }))
